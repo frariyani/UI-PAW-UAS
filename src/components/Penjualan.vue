@@ -218,7 +218,6 @@
       <template v-slot:[`item.status`]>
         <v-col cols="4">
           <v-select
-            v-model="e1"
             :items="statusPesanan"
             menu-props="auto"
             label="Status"

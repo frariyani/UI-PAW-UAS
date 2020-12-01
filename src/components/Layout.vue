@@ -48,7 +48,7 @@
               My Profile
             </v-list-item-title>
           </v-list-item>
-          <v-list-item href="/login">
+          <v-list-item @click="logout">
             <v-list-item-title >
               Logout
             </v-list-item-title>
@@ -78,3 +78,19 @@
     </v-footer>
 </v-app>    
 </template>
+<script>
+export default {
+  name: "Layout",
+  data(){
+    return{
+
+    }
+  },
+  methods:{
+    logout(){
+      localStorage.removeItem('token');
+      this.$router.replace('/login');
+    }
+  }
+}
+</script>

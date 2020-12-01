@@ -14,12 +14,13 @@ import Register from '@/components/Register'
 
 Vue.use(VueRouter)
 
-export default new VueRouter({
+const router = new VueRouter({
     mode: 'history',
     routes: [
         {
             path: '/',
             component: Layout,
+            meta: {Auth:true},
             children: [
                 {
                     path:'/',
@@ -82,3 +83,18 @@ export default new VueRouter({
         },
     ],
 })
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.Auth)) {
+        if (localStorage.getItem('token')) {
+            next();
+        }
+        else {
+            router.replace('/login')
+        }
+    } else {
+        next()
+    }
+});
+
+export default router;
